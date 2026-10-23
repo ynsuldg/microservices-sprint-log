@@ -21,7 +21,7 @@ Jag deltog i backloggenomgång, estimering och gemensam ansvarsfördelning. Plan
 Jag skapade välkomstsidan med användarnamn och roller (FE-10), committad den 2 oktober. Jag byggde även produktvisning från backend med felhantering, hantering av tom produktlista och USD-priser (FE-11). Detta committades lördagen den 3 oktober, efter ordinarie sprintslut. Arbetet gav mig mer praktisk erfarenhet av sessionsdata och datahämtning med React Router.
 
 ### Eventuella problem och hur jag löste dem
-En missuppfattning gjorde att min påbörjade loginlösning överlappade Martins arbete. Min PR stängdes och jag byggde istället välkomstsidan vidare på hans implementation.
+En missuppfattning gjorde att min påbörjade loginlösning överlappade en gruppmedlems arbete. Min PR stängdes och jag byggde istället välkomstsidan vidare på den befintliga implementationen.
 
 ### Samarbete och agilt arbete
 Jag deltog i sprintplaneringen och löpande avstämningar. Genom att fortsätta på gruppens gemensamma loginlösning kunde jag fokusera på välkomstsidan istället för att behålla parallella implementationer.
@@ -47,3 +47,14 @@ Jag felsökte saknade miljövariabler och databasproblem efter backenduppdaterin
 
 ### Samarbete och agilt arbete
 Jag deltog i planeringen och avstämningarna samt granskade kamraternas PR:er. Jag uppmärksammade bland annat null-hantering i sökningen, som rättades. Det visade att grön CI inte ersätter granskning av olika datafall. Jag upplever att våra reviews och retros har förbättrat kommunikationen och effektiviteten genom att vi följer upp både resultatet och arbetssättet.
+
+## Sprint 5 – vecka 43, 19–23 oktober 2026
+
+### Vad jag arbetade med
+Vi delade upp gatewayuppgiften i mindre Trello-kort. Jag ansvarade för controllerklassen, forwardPost och POST-endpoints för produkter och ordrar. Jag kopplade dessa till vår gemensamma GatewayProxyService, så att body, Authorization och Content-Type vidarebefordras till rätt tjänst. Ändringarna committades den 20 oktober. Den 22 oktober committade jag även CSRF-konfigurationen för gatewayen. Projektet kompilerade och det befintliga starttestet gick igenom.
+
+### Eventuella problem och hur jag löste dem
+Maven Wrapper fungerade inte vid import av det klonade projektet. Jag bytte till IntelliJ:s bundled Maven 3 och kunde läsa in beroendena. Jag undersökte också CSRF och följde anropen genom tjänsterna. Det gav mig en tydligare förståelse för skillnaden mellan gatewayens vidarebefordring och backendtjänsternas JWT-verifiering.
+
+### Samarbete och agilt arbete
+Uppdelningen gjorde att vi kunde arbeta parallellt, men våra metoder behövde passa ihop i den gemensamma serviceklassen. Jag återanvände gruppens send-metod och granskade en gruppmedlems PR. Där upptäcktes ofullständiga konfigurationsuttryck som rättades före merge. Det visade hur kodgranskning kan fånga problem som ett grönt byggresultat inte alltid upptäcker.
