@@ -58,3 +58,18 @@ Maven Wrapper fungerade inte vid import av det klonade projektet. Jag bytte till
 
 ### Samarbete och agilt arbete
 Uppdelningen gjorde att vi kunde arbeta parallellt, men våra metoder behövde passa ihop i den gemensamma serviceklassen. Jag återanvände gruppens send-metod och granskade en gruppmedlems PR. Där upptäcktes ofullständiga konfigurationsuttryck som rättades före merge. Det visade hur kodgranskning kan fånga problem som ett grönt byggresultat inte alltid upptäcker.
+
+## Sprint 6 – vecka 44, 26–30 oktober 2026
+
+### Vad jag arbetade med
+Jag undersökte hur Vitest, React Testing Library och MSW används tillsammans och dokumenterade skillnaden mellan komponenttest, frontend-integrationstest och end-to-end-test (FE-38). Därefter konfigurerade jag MSW med mockade svar för /auth/me och /products, så att API-svaren kan styras utan att backend körs (FE-39). Jag kompletterade även med tester för lyckad och misslyckad inloggning. Detta committades den 29 oktober.
+
+Den 30 oktober committade jag integrationstester för produkthämtningen (FE-40). Testerna renderar App och kontrollerar att en inloggad användare ser produkterna, att ett felmeddelande visas när hämtningen misslyckas och att produkter inte visas när den mockade användarsessionen saknas. Jag skrev också Javadoc för relevanta klasser och publika metoder i order-service (FE-46) samt en README med tjänstens ansvar, tekniker, databas, miljövariabler och startinstruktioner (FE-43). Dokumentationen committades den 29 oktober.
+
+### Eventuella problem och hur jag löste dem
+Frontendens befintliga inloggning använde sessionsdata, medan uppgiften även krävde mockning av /auth/me. Jag anpassade testmiljön så att det mockade användarsvaret gav produktsidan den autentiserade kontext som den behöver. Det gjorde att produkthämtningen kunde testas utan att ändra den befintliga inloggningslösningen. Jag fick en tydligare förståelse för hur frontendens beteende kan testas separat från backendens autentisering.
+
+### Samarbete och agilt arbete
+Jag deltog i sprintplaneringen, våra daily scrums samt fredagens review och retro. Vi fördelade dokumentationsarbetet inom gruppen, och jag ansvarade för order-servicens Javadoc och README. När dokumentationen var färdig jämförde jag den med övriga tjänsters för att bekräfta att vi hade en gemensam struktur.
+
+Vid granskningen av min PR diskuterade vi om testadressen behövde innehålla port 5173. Jag förklarade att testerna använder MSW och inte kräver en körande utvecklingsserver. Efter avstämningen godkändes och mergades PR:n. Diskussionen gav oss en gemensam förståelse för testernas upplägg och omfattning.
