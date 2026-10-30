@@ -58,14 +58,3 @@ Maven Wrapper fungerade inte vid import av det klonade projektet. Jag bytte till
 
 ### Samarbete och agilt arbete
 Uppdelningen gjorde att vi kunde arbeta parallellt, men våra metoder behövde passa ihop i den gemensamma serviceklassen. Jag återanvände gruppens send-metod och granskade en gruppmedlems PR. Där upptäcktes ofullständiga konfigurationsuttryck som rättades före merge. Det visade hur kodgranskning kan fånga problem som ett grönt byggresultat inte alltid upptäcker.
-
-## Sprint 6 – vecka 44, 26–30 oktober 2026
-
-### Vad jag arbetade med
-Jag undersökte integrationstestning och dokumenterade skillnaden mellan komponenttest, frontend-integrationstest och end-to-end-test (FE-38). Jag installerade och konfigurerade MSW med mockade svar för /auth/me och /products samt kompletterade med inloggningstester (FE-39). Detta committades den 29 oktober. Den 30 oktober committade jag tester som renderar App och verifierar att en inloggad användare ser produkterna och att ett felmeddelande visas när hämtningen misslyckas (FE-40). Jag skrev även Javadoc för relevanta klasser och publika metoder i order-service (FE-46) och skapade tjänstens README med ansvar, tekniker, databas, miljövariabler och startinstruktioner (FE-43). Båda committades den 29 oktober. Jag fick mer praktisk erfarenhet av att testa datahämtning och felhantering utan en körande backend.
-
-### Eventuella problem och hur jag löste dem
-Testerna behövde anpassas till frontendens befintliga sessionshantering. Jag inväntade gruppens uppdateringar där det fanns beroenden och använde en autentiserad testkontext för produkthämtningen. Vid PR-granskningen uppstod en fråga om testadressen behövde innehålla port 5173. Jag förklarade att integrationstestet använder en simulerad miljö och MSW, så att utvecklingsservern inte behöver köras. Efter avstämningen godkändes och mergades PR:n. Jag flyttade också FE-40 till en egen gren från main för att hålla ändringen avgränsad från arbetet med MSW-konfigurationen.
-
-### Samarbete och agilt arbete
-Jag deltog i sprintplanering, daily scrums, sprint review och retro enligt vårt gemensamma arbetssätt. Vi fördelade dokumentationsarbetet mellan tjänsterna, och jag ansvarade för order-service. Jag jämförde gruppens README-filer för att följa samma struktur. Avstämningarna kring beroenden och testupplägg hjälpte mig att tydligare skilja på vad mitt test verifierar och vad som behöver testas genom hela systemet.
