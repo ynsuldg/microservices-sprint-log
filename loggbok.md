@@ -74,18 +74,8 @@ Den 30 oktober committade jag integrationstester för produkthämtningen (FE-40)
 
 Jag skrev Javadoc för relevanta klasser och publika metoder i order-service (FE-46) samt en README med tjänstens ansvar, tekniker, databas, miljövariabler och startinstruktioner (FE-43). Dokumentationen committades den 29 oktober. Jag följde tjänstens kod och konfiguration för att beskrivningarna skulle stämma med hur den fungerade.
 
-Jag undersökte även Stripe med koppling till FE-14, FE-19 och FE-31 och dokumenterade integrationskraven och genomförandet. Jag skapade en separat payment-service för testbetalningar och kopplade betalningsflödet till beställningar och lagerreservationer. Arbetet fortsatte i egna projektkopior efter sprintens slut. Efter avstämning med läraren redovisas vidareutvecklingen här.
-
-I projektkopiorna lade jag dessutom till kontoregistrering, kontoborttagning och förenklad lösenordsåterställning för demoappen. Jag förbättrade produktkortens layout och återkopplingen när produkter läggs i varukorgen samt skapade gemensamt utformade statussidor för backendtjänsterna. Jag anpassade CI och Docker-publiceringen till mina repositories, driftsatte tjänsterna på Render och uppdaterade dokumentationen.
-
 ### Eventuella problem och hur jag löste dem
 Frontendens inloggning använde sessionsdata, medan uppgiften krävde mockning av /auth/me. Jag anpassade testmiljön så att det mockade användarsvaret gav produktsidan rätt användarkontext. Därmed kunde produkthämtningen testas utan att ändra inloggningslösningen. Jag fick en tydligare förståelse för hur frontendens beteende kan testas separat från backendens autentisering och vilka delar som fortfarande behöver verifieras i hela systemet.
-
-Vid testning lyckades betalningen i Stripe, men beställningen blev kvar som väntande. Jag följde händelsen i Stripe och upptäckte att webhooken skickades till fel adress. Efter korrigering och omsändning uppdaterades beställningen. Felsökningen visade att jag behövde följa bekräftelsen från Stripe till beställningen för att hitta var flödet stannade.
-
-Jag lade även till möjlighet att avbryta en väntande betalning och frigöra reserverat lager. Det gjorde hanteringen tydligare när kunden lämnade betalningen utan att slutföra den. Arbetet gav mig bättre förståelse för hur betalningsstatus, beställning och lager behöver hållas konsekventa mellan tjänsterna.
-
-Vid driftsättningen felsökte jag miljövariabler och frontendens inställning för tillåtna ursprung. Därefter testade jag hela betalningsflödet i driftmiljön. Det gjorde mig mer uppmärksam på att lokal testning behöver kompletteras med testning efter driftsättning, eftersom adresser och konfiguration skiljer sig åt.
 
 ### Samarbete och agilt arbete
 Jag deltog i sprintplanering, daily scrums samt fredagens review och retro. Vid planeringen använde vi planning poker med egna uppskattningar. När bedömningarna skilde sig åt diskuterade vi vad som påverkade uppgiftens storlek. Det hjälpte oss att upptäcka olika uppfattningar om omfattning och beroenden innan vi fördelade uppgifterna. Jag jämförde min bedömning med gruppens och fick en tydligare bild av vad uppgifterna krävde.
@@ -96,6 +86,26 @@ Vi fördelade dokumentationsarbetet, och jag ansvarade för order-servicens Java
 
 Vid granskningen av min PR diskuterade vi om testadressen behövde innehålla port 5173. Jag förklarade att testerna använder MSW och inte kräver en körande utvecklingsserver. Därefter godkändes och mergades PR:n. Diskussionen gav oss en gemensam förståelse för testernas upplägg och omfattning. Jag behövde också kunna motivera lösningen och förklara vad testerna verifierar.
 
-Betalningsfunktionen och den övriga individuella vidareutvecklingen genomförde jag i egna projektkopior. Där följde jag ändringar genom frontend, gateway och backend och ansvarade för att hela flödet fungerade. Jag tillämpade erfarenheterna från grupparbetet och fattade egna beslut om implementation, testning och driftsättning.
+### Individuell vidareutveckling
 
-Den 5 november stämde jag av arbetet med läraren, som föreslog att betalningsundersökningen och implementationen skulle ingå i sprint 6.
+Arbetet nedan genomfördes i egna projektkopior efter sprintens ordinarie slut och redovisas inom sprint 6 enligt avstämning med läraren den 5 november.
+
+#### Vad jag arbetade med
+
+**Betalningsfunktion**
+
+Jag undersökte Stripe med koppling till FE-14, FE-19 och FE-31 och dokumenterade integrationskraven och genomförandet. Jag skapade en separat payment-service för testbetalningar och kopplade betalningsflödet till beställningar och lagerreservationer.
+
+**Övrig vidareutveckling**
+
+Jag lade till kontoregistrering, kontoborttagning och förenklad lösenordsåterställning för demoappen. Jag förbättrade produktkortens layout och återkopplingen när produkter läggs i varukorgen samt skapade gemensamt utformade statussidor för backendtjänsterna. Jag anpassade CI och Docker-publiceringen till mina repositories, driftsatte tjänsterna på Render och uppdaterade dokumentationen.
+
+#### Eventuella problem och hur jag löste dem
+Vid testning lyckades betalningen i Stripe, men beställningen blev kvar som väntande. Jag följde händelsen i Stripe och upptäckte att webhooken skickades till fel adress. Efter korrigering och omsändning uppdaterades beställningen. Felsökningen visade att jag behövde följa bekräftelsen från Stripe till beställningen för att hitta var flödet stannade.
+
+Jag lade även till möjlighet att avbryta en väntande betalning och frigöra reserverat lager. Det gjorde hanteringen tydligare när kunden lämnade betalningen utan att slutföra den. Arbetet gav mig bättre förståelse för hur betalningsstatus, beställning och lager behöver hållas konsekventa mellan tjänsterna.
+
+Vid driftsättningen felsökte jag miljövariabler och frontendens inställning för tillåtna ursprung. Därefter testade jag hela betalningsflödet i driftmiljön. Det gjorde mig mer uppmärksam på att lokal testning behöver kompletteras med testning efter driftsättning, eftersom adresser och konfiguration skiljer sig åt.
+
+#### Samarbete och agilt arbete
+Vidareutvecklingen genomförde jag självständigt i egna projektkopior. Där följde jag ändringar genom frontend, gateway och backend och ansvarade för att hela flödet fungerade. Jag tillämpade erfarenheterna från grupparbetet och fattade egna beslut om implementation, testning och driftsättning.
